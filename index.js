@@ -14,3 +14,8 @@ function showSignupPopup() {
 function closeSignupPopup() {
     document.getElementById('signupPopup').style.display = 'none';
 }
+
+function toggleDropdown() {
+    const dropdownOptions = document.getElementById('dropdownOptions');
+    dropdownOptions.style.display = (dropdownOptions.style.display === 'flex') ? 'none' : 'flex';
+}
