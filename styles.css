@@ -51,7 +51,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -237,26 +237,4 @@ input {
 .nav-bar button {
     display: inline-block;
     margin-left: 10px; /* Adjust the spacing between buttons */
-}
-
-@media (max-width: 350px) {
-    .menu-icon {
-        display: none; /* Hide the menu icon below 350px */
-    }
-
-    .nav-bar {
-        flex-direction: column; /* Stack items on top of each other */
-        align-items: flex-end; /* Align items to the end of the flex container */
-    }
-
-    .nav-bar button {
-        display: block; /* Display buttons as block elements (stacked) */
-        margin-bottom: 10px; /* Add margin between stacked buttons */
-    }
-
-    .dropdown-options {
-        display: flex; /* Show the dropdown options below 350px */
-        flex-direction: column;
-        align-items: flex-end; /* Align options to the end of the flex container */
-    }
 }
