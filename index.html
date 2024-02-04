@@ -11,24 +11,79 @@
   <body>
 
     <div class="nav-bar">
-        <h1>MadMapp</h1>  
-        <div class="button-container">
-            <button class="login">Login</button>
-            <button class="sign-up">Sign Up</button>
+        <h1>MadMapp</h1>
+        <button class="login" onclick="showLoginPopup()">Login</button>
+        <button class="sign-up" onclick="showSignupPopup()">Sign Up</button>
+    </div>
+    
+    <!-- Login Popup -->
+    <div id="loginPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeLoginPopup()">&times;</span>
+            <h2>Login</h2>
+            <form>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username">
+    
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+    
+                <div class="form-options">
+                    <a href="#">Forgot Password</a>
+                    <span class="separator">|</span>
+                    <a href="#" onclick="showSignupPopup()">Sign Up</a>
+                </div>
+    
+                <button type="submit">Login</button>
+            </form>
         </div>
     </div>
+    
+    <!-- Signup Popup -->
+    <div id="signupPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeSignupPopup()">&times;</span>
+            <h2>Sign Up</h2>
+            <form>
+                <label for="signupUsername">Username:</label>
+                <input type="text" id="signupUsername" name="signupUsername" placeholder="Choose a username">
+    
+                <label for="signupPassword">Password:</label>
+                <input type="password" id="signupPassword" name="signupPassword" placeholder="Choose a password">
+    
+                <!-- Add additional signup fields as needed -->
+    
+                <div class="form-options">
+                    <a href="#" onclick="showLoginPopup()">Already have an account? Login</a>
+                </div>
+    
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    
+    </div>
+    
 
     <div class="screen-container">
-        <h1 class="page-content">Madmapp is a Mobile Mapping Application</h1>
-        <p>we provide a simple system to turn your old tv in to a personal advertizing portal,using madmapp is simple and will turn passers by in to foot fall, how many potential customers walk by your shop and dont even know what you provide?</p>
+        <h1 class="page-content">Madmapp is a Mobile Advertizing & Mapping Application
+
+
+
+        </h1>
         <div class="video-container">
-            <iframe class="video" src="https://www.facebook.com/plugins/video.php?height=315&href=https%3A%2F%2Fwww.facebook.com%2FMADMAPP1%2Fvideos%2F228401327691588%2F&show_text=false&width=560&t=0" width="560" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+            <div class="video-wrapper">
+                <iframe class="video" src="https://www.facebook.com/plugins/video.php?height=315&href=https%3A%2F%2Fwww.facebook.com%2FMADMAPP1%2Fvideos%2F228401327691588%2F&show_text=false&width=560&t=0" width="560" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+            </div>
+        </div>
+        <div class="text-container">
+            <p>we provide a simple system to turn your old tv into a personal advertising portal. Using Madmapp is simple and will turn passersby into footfall. How many potential customers walk by your shop and don't even know what you provide?</p>
         </div>
     </div>
     <div class="cutout-container">
         <img src="/logo.png" alt="logo" class="logo-image">
     </div>
-	<script src="index.js"></script>
+	<script src="/index.js"></script>
     <footer class="sticky-footer">
         <div class="copyright">Copyright © 2024 MadMapp</div>
         <div class="social-icons">
