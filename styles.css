@@ -238,3 +238,8 @@ input {
     display: inline-block;
     margin-left: 10px; /* Adjust the spacing between buttons */
 }
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}

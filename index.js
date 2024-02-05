@@ -30,8 +30,8 @@ function login(event) {
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
 
-    // Add your login verification logic here
-    // For example, you can send the data to the server and verify credentials
+    // Add login verification logic here
+    // For example,send the data to the server and verify credentials
 
     // For now, let's just log the values to the console
     console.log('Login:', username, password);
@@ -48,12 +48,43 @@ function signup(event) {
     var signupUsername = document.getElementById('signupUsername').value;
     var signupPassword = document.getElementById('signupPassword').value;
 
-    // Add your signup verification logic here
-    // For example, you can send the data to the server and create a new user
+    // Add signup verification logic here
+    // For example, send the data to the server and create a new user
 
     // For now, let's just log the values to the console
     console.log('Signup:', signupUsername, signupPassword);
 
     // Close the signup popup
     closeSignupPopup();
+}
+
+
+//error handelin and form validation
+
+function validateLogin() {
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    if (username === '' || password === '') {
+        document.getElementById('loginError').innerHTML = 'Please enter both username and password.';
+        return false; // Prevent form submission
+    }
+
+    // Other validation logic if needed
+
+    return true; // Allow form submission
+}
+
+function validateSignup() {
+    var signupUsername = document.getElementById('signupUsername').value;
+    var signupPassword = document.getElementById('signupPassword').value;
+
+    if (signupUsername === '' || signupPassword === '') {
+        document.getElementById('signupError').innerHTML = 'Please enter both username and password.';
+        return false; // Prevent form submission
+    }
+
+    // Other validation logic if needed
+
+    return true; // Allow form submission
 }

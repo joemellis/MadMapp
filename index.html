@@ -20,53 +20,56 @@
         </div>
     </div>
     
-    <!-- Login Popup -->
-    <div id="loginPopup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closeLoginPopup()">&times;</span>
-            <h2>Login</h2>
-            <form>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username">
     
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password">
-    
-                <div class="form-options">
-                    <a href="#">Forgot Password</a>
-                    <span class="separator">|</span>
-                    <a href="#" onclick="showSignupPopup()">Sign Up</a>
-                </div>
-    
-                <button type="submit">Login</button>
-            </form>
-        </div>
+  <!-- Login Popup -->
+<div id="loginPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closeLoginPopup()">&times;</span>
+        <h2>Login</h2>
+        <form onsubmit="return validateLogin()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+
+            <div class="form-options">
+                <a href="#">Forgot Password</a>
+                <span class="separator">|</span>
+                <a href="#" onclick="showSignupPopup()">Sign Up</a>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+        <!-- Error handling for login -->
+        <div id="loginError" class="error-message"></div>
     </div>
-    
-    <!-- Signup Popup -->
-    <div id="signupPopup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closeSignupPopup()">&times;</span>
-            <h2>Sign Up</h2>
-            <form>
-                <label for="signupUsername">Username:</label>
-                <input type="text" id="signupUsername" name="signupUsername" placeholder="Choose a username">
-    
-                <label for="signupPassword">Password:</label>
-                <input type="password" id="signupPassword" name="signupPassword" placeholder="Choose a password">
-    
-                <!-- Add additional signup fields as needed -->
-    
-                <div class="form-options">
-                    <a href="#" onclick="showLoginPopup()">Already have an account? Login</a>
-                </div>
-    
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
+</div>
+
+<!-- Signup Popup -->
+<div id="signupPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closeSignupPopup()">&times;</span>
+        <h2>Sign Up</h2>
+        <form onsubmit="return validateSignup()">
+            <label for="signupUsername">Username:</label>
+            <input type="text" id="signupUsername" name="signupUsername" placeholder="Choose a username">
+
+            <label for="signupPassword">Password:</label>
+            <input type="password" id="signupPassword" name="signupPassword" placeholder="Choose a password">
+
+            <!-- Add additional signup fields as needed -->
+
+            <div class="form-options">
+                <a href="#" onclick="showLoginPopup()">Already have an account? Login</a>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <!-- Error handling for signup -->
+        <div id="signupError" class="error-message"></div>
     </div>
-    
-    </div>
+</div>
+
     
 
     <div class="screen-container">
