@@ -1,12 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hello world</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block content %}
+<div class="user-profile">
+    <h2>User Profile</h2>
+    
+    <div class="profile-details">
+        <div class="profile-header">
+            <img src="{% static 'profile_image.jpg' %}" alt="Profile Image">
+            <div class="profile-info">
+                <h3>{{ user.username }}</h3>
+                <p>Business Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Business Address: 123 Main Street, City, Country</p>
+                <p>Business Phone: +1234567890</p>
+                <p>Website: <a href="#">example.com</a></p>
+                <p>Email: user@example.com</p>
+            </div>
+        </div>
+        <!-- Add edit icons and functionality here -->
+    </div>
+    
+    <div class="image-galleries">
+        <div class="gallery">
+            <h3>My Adverts</h3>
+            <p>These are the big adverts that display on your screen</p>
+            <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'advert1.jpg' %}" class="d-block w-100" alt="Advert 1">
+                        <button class="upload-button">Upload</button>
+                        <i class="fas fa-trash-alt bin-icon"></i>
+                    </div>
+                    <!-- Add more carousel items for additional images -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="gallery">
+            <h3>My Sharing Adverts</h3>
+            <p>These images are shared to your network</p>
+            <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'sharing_advert1.jpg' %}" class="d-block w-100" alt="Sharing Advert 1">
+                        <button class="upload-button">Upload</button>
+                        <i class="fas fa-trash-alt bin-icon"></i>
+                    </div>
+                    <!-- Add more carousel items for additional images -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="start-adverts">
+    <button>start adverts</button>
+</div>
+ <!-- Google Maps -->
+ <div class="google-map">
+    <iframe
+        width="100%"
+        height="400"
+        frameborder="0"
+        style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJj61dQgK6j4AReS7vgMnZ10U&key=AIzaSyDUkEeZw1XQwyc8MUk63xeghTnfe1PiioU"
+        allowfullscreen>
+    </iframe>
+</div>
+{% endblock %}

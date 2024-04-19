@@ -43,12 +43,15 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'userprofile',
+    'crispy_forms',
 ]
 
 
 SITE_ID=1
 LOGIN_REDIRECT_URL ='/'
 LOGOUT_REDIRECT_URL='/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Use 'bootstrap4' or 'bootstrap3' based on your preferred frontend framework
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

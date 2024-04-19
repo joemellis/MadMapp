@@ -1,20 +1,13 @@
-// index.js
-
 function showLoginPopup() {
     document.getElementById('loginPopup').style.display = 'flex';
 }
 
-function closeLoginPopup() {
-    document.getElementById('loginPopup').style.display = 'none';
-}
-
 function showSignupPopup() {
-    closeLoginPopup(); // Close the login popup if open
     document.getElementById('signupPopup').style.display = 'flex';
 }
 
-function closeSignupPopup() {
-    document.getElementById('signupPopup').style.display = 'none';
+function closePopup(popupId) {
+    document.getElementById(popupId).style.display = 'none';
 }
 
 function toggleDropdown() {
@@ -22,69 +15,69 @@ function toggleDropdown() {
     dropdownOptions.style.display = (dropdownOptions.style.display === 'flex') ? 'none' : 'flex';
 }
 
-// Function to handle login form submission
 function login(event) {
     event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-    // Get values from the login form
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
-
-    // Add login verification logic here
-    // For example,send the data to the server and verify credentials
-
-    // For now, let's just log the values to the console
-    console.log('Login:', username, password);
-
-    // Close the login popup
-    closeLoginPopup();
+    // Send login request to server
+    fetch('/accounts/login/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(response => {
+        if (response.ok) {
+            closePopup('loginPopup');
+            window.location.href = '/userprofile'; // Redirect to userprofile after successful login
+        } else {
+            response.json().then(data => {
+                document.getElementById('loginError').textContent = data.non_field_errors || 'An error occurred.';
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
-// Function to handle signup form submission
 function signup(event) {
     event.preventDefault();
+    const signupUsername = document.getElementById('signupUsername').value;
+    const signupPassword = document.getElementById('signupPassword').value;
 
-    // Get values from the signup form
-    var signupUsername = document.getElementById('signupUsername').value;
-    var signupPassword = document.getElementById('signupPassword').value;
-
-    // Add signup verification logic here
-    // For example, send the data to the server and create a new user
-
-    // For now, let's just log the values to the console
-    console.log('Signup:', signupUsername, signupPassword);
-
-    // Close the signup popup
-    closeSignupPopup();
+    // Send signup request to server
+    fetch('/accounts/signup/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({ username: signupUsername, password: signupPassword })
+    })
+    .then(response => {
+        if (response.ok) {
+            closePopup('signupPopup');
+            window.location.href = '/userprofile'; // Redirect to userprofile after successful signup
+        } else {
+            response.json().then(data => {
+                document.getElementById('signupError').textContent = data.username || 'An error occurred.';
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
-
-//error handelin and form validation
-
-function validateLogin() {
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
-
-    if (username === '' || password === '') {
-        document.getElementById('loginError').innerHTML = 'Please enter both username and password.';
-        return false; // Prevent form submission
-    }
-
-    // Other validation logic if needed
-
-    return true; // Allow form submission
+// Function to get CSRF token from cookies
+function getCookie(name) {
+    const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return cookieValue ? cookieValue.pop() : '';
 }
 
-function validateSignup() {
-    var signupUsername = document.getElementById('signupUsername').value;
-    var signupPassword = document.getElementById('signupPassword').value;
-
-    if (signupUsername === '' || signupPassword === '') {
-        document.getElementById('signupError').innerHTML = 'Please enter both username and password.';
-        return false; // Prevent form submission
-    }
-
-    // Other validation logic if needed
-
-    return true; // Allow form submission
-}
+document.getElementById('loginForm').addEventListener('submit', login);
+document.getElementById('signupForm').addEventListener('submit', signup);
