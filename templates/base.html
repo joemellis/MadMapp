@@ -20,47 +20,11 @@
             <a href="/userprofile">Profile</a>
             <a href="{% url 'account_logout' %}">Logout</a>
         {% else %}
-            <a href="#" onclick="showLoginPopup()">Login</a>
-            <a href="#" onclick="showSignupPopup()">Sign Up</a>
+           
+                <a href="{% url 'account_login' %}" class="login-button">Login</a>
+                <a href="{% url 'account_signup' %}" class="signup-button">Sign Up</a>
+           
         {% endif %}
-    </div>
-</div>
-
-<!-- Login Popup -->
-<div id="loginPopup" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closePopup('loginPopup')">&times;</span>
-        <h2>Login</h2>
-        <form id="loginForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username">
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password">
-
-            <button type="submit">Login</button>
-        </form>
-        <!-- Error handling for login -->
-        <div id="loginError" class="error-message"></div>
-    </div>
-</div>
-
-<!-- Signup Popup -->
-<div id="signupPopup" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closePopup('signupPopup')">&times;</span>
-        <h2>Sign Up</h2>
-        <form id="signupForm">
-            <label for="signupUsername">Username:</label>
-            <input type="text" id="signupUsername" name="signupUsername" placeholder="Choose a username">
-
-            <label for="signupPassword">Password:</label>
-            <input type="password" id="signupPassword" name="signupPassword" placeholder="Choose a password">
-
-            <button type="submit">Sign Up</button>
-        </form>
-        <!-- Error handling for signup -->
-        <div id="signupError" class="error-message"></div>
     </div>
 </div>
 

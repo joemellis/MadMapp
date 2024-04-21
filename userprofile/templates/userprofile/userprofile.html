@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% if user.is_authenticated %}
 {% block content %}
 <div class="user-profile">
     <h2>User Profile</h2>
@@ -83,3 +83,4 @@
     </iframe>
 </div>
 {% endblock %}
+{% endif %}
