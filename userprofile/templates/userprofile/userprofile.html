@@ -71,13 +71,60 @@
 <div class="start-adverts">
     <button>start adverts</button>
     <button id="getLocationButton">Get My Location</button>
-
 </div>
  <!-- Google Maps -->
  <div id="googleMapContainer">
-    <iframe id="googleMap" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <iframe id="googleMap" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen ></iframe>
 </div>
-</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to update Google Maps iframe src with latitude and longitude
+        function updateMap(latitude, longitude) {
+            // Construct the Google Maps URL with latitude, longitude, and desired zoom level
+            const zoomLevel = 1;  // Adjust the zoom level as needed
+            const googleMapSrc = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDUkEeZw1XQwyc8MUk63xeghTnfe1PiioU&q=${latitude},${longitude}&zoom=${zoomLevel}`;
+    
+            // Set the src attribute of the Google Maps iframe
+            document.getElementById('googleMap').src = googleMapSrc;
+        }
+    
+        // Check if latitude and longitude are available in the context
+        var latitude = '{{ UserProfile.latitude }}';
+        var longitude = '{{ UserProfilelongitude }}';
+        
+        // If latitude and longitude are not available, get the user's location
+        if (!latitude || !longitude) {
+            getLocation();
+        } else {
+            // If latitude and longitude are available, update the map with the current coordinates
+            updateMap(latitude, longitude);
+        }
+    });
+    
+    // Function to get the user's geolocation
+    function getLocation() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+        } else {
+            alert('Geolocation is not supported by your browser');
+        }
+    }
+    
+    // Function to handle successful geolocation request
+    function handleSuccess(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        
+        updateMap(latitude, longitude);
+    }
+    
+    // Function to handle errors in geolocation request
+    function handleError(error) {
+        console.error('Error getting location:', error.message);
+        // Display an error message to the user
+        alert('Error getting your location. Please try again later.');
+    }
+    </script>
 <script src="{% static 'index.js' %}"></script>
 {% endblock %}
 {% endif %}

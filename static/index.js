@@ -1,20 +1,25 @@
+// Function to show login popup
 function showLoginPopup() {
     document.getElementById('loginPopup').style.display = 'flex';
 }
 
+// Function to show signup popup
 function showSignupPopup() {
     document.getElementById('signupPopup').style.display = 'flex';
 }
 
+// Function to close popup
 function closePopup(popupId) {
     document.getElementById(popupId).style.display = 'none';
 }
 
+// Function to toggle dropdown
 function toggleDropdown() {
     const dropdownOptions = document.getElementById('dropdownOptions');
     dropdownOptions.style.display = (dropdownOptions.style.display === 'flex') ? 'none' : 'flex';
 }
 
+// Function to handle login
 function login(event) {
     event.preventDefault();
     const username = document.getElementById('username').value;
@@ -44,6 +49,7 @@ function login(event) {
     });
 }
 
+// Function to handle signup
 function signup(event) {
     event.preventDefault();
     const signupUsername = document.getElementById('signupUsername').value;
@@ -79,7 +85,6 @@ function getCookie(name) {
     return cookieValue ? cookieValue.pop() : '';
 }
 
-
 // Function to handle the click event of the button
 document.getElementById('getLocationButton').addEventListener('click', getLocation);
 
@@ -92,6 +97,7 @@ function getLocation() {
     }
 }
 
+// Function to handle successful geolocation request
 function handleSuccess(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
@@ -117,6 +123,28 @@ function handleSuccess(position) {
     });
 }
 
+// Event listener to check for user profile latitude and longitude on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const latitude = '{{ user_profile.latitude }}'; // Ensure correct variable name
+    const longitude = '{{ user_profile.longitude }}'; // Ensure correct variable name
+
+    console.log('Latitude:', latitude);
+    console.log('Longitude:', longitude);
+
+    if (latitude && longitude) {
+        updateMap(latitude, longitude);
+    } else {
+        // If latitude and longitude are not available, get the user's location
+        getLocation();
+    }
+});
+
+// Function to handle errors in geolocation request
+function handleError(error) {
+    console.error('Error getting location:', error.message);
+    // Display an error message to the user
+    alert('Error getting your location. Please try again later.');
+}
 
 // Function to update Google Maps iframe src with latitude and longitude
 function updateMap(latitude, longitude) {
@@ -127,22 +155,30 @@ function updateMap(latitude, longitude) {
     document.getElementById('googleMap').src = googleMapSrc;
 }
 
-// Function to handle errors in geolocation request
-function handleError(error) {
-    console.error('Error getting location:', error.message);
-    // Display an error message to the user
-    alert('Error getting your location. Please try again later.');
-}
-
+// Event listener to check for user profile latitude and longitude on page load
 document.addEventListener('DOMContentLoaded', function() {
-    const latitude = '{{ user_profile.latitude }}';
-    const longitude = '{{ user_profile.longitude }}';
+    const latitude = '{{ UserProfile.latitude }}';
+    const longitude = '{{ UserProfile.longitude }}';
+
+    console.log('Latitude:', latitude);
+    console.log('Longitude:', longitude);
 
     if (latitude && longitude) {
         updateMap(latitude, longitude);
     } else {
-        document.getElementById('getLocationButton').style.display = 'block';
-        document.getElementById('getLocationButton').addEventListener('click', getLocation);
+        // If latitude and longitude are not available, get the user's location
+        getLocation();
     }
 });
+
+
+// Function to update Google Maps iframe src with latitude and longitude
+function updateMap(latitude, longitude) {
+    // Construct the Google Maps URL with latitude and longitude, including the API key
+    const googleMapSrc = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDUkEeZw1XQwyc8MUk63xeghTnfe1PiioU&q=${latitude},${longitude}`;
+
+    // Set the src attribute of the Google Maps iframe
+    document.getElementById('googleMap').src = googleMapSrc;
+}
+
 

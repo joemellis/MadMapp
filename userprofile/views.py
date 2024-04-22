@@ -6,13 +6,35 @@ from .models import UserProfile
 def profile_view(request):
     # Get the UserProfile object for the current user
     user_profile = UserProfile.objects.get(user=request.user)
-    return render(request, 'userprofile/userprofile.html', {'user_profile': user_profile})
+
+    # Check if latitude and longitude exist in the user profile
+    latitude = user_profile.latitude
+    longitude = user_profile.longitude
+
+    # If latitude and longitude are not available, set them to None
+    if latitude is None or longitude is None:
+        # Call a function to fetch latitude and longitude (e.g., getLocation())
+        # For simplicity, I'm using None here; replace with actual function calls
+        latitude = None
+        longitude = None
+    else:
+        # If latitude and longitude are available, update the map with the current coordinates
+        update_map(latitude, longitude)
+
+    return render(request, 'userprofile/userprofile.html', {'user_profile': user_profile, 'latitude': latitude, 'longitude': longitude})
 
 def index(request):
     return render(request, 'userprofile/index.html')
 
+def update_map(latitude, longitude):
+    # Function to update Google Maps iframe src with latitude and longitude
+    # Construct the Google Maps URL with latitude and longitude, including the API key
+    google_map_src = f"https://www.google.com/maps/embed/v1/place?key=AIzaSyDUkEeZw1XQwyc8MUk63xeghTnfe1PiioU&q={latitude},{longitude}"
 
-# views.py
+    # Set the src attribute of the Google Maps iframe
+    # Assuming you have an element with id 'googleMap' in your HTML
+    return google_map_src
+
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from .models import UserProfile
