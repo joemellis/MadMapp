@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MadMapp</title>
+    <title >MadMapp</title>
     <link rel="icon" type="image/x-icon" href="{% static 'favicon_io/favicon-32x32.png' %}">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script src="https://kit.fontawesome.com/dc556dca35.js" crossorigin="anonymous"></script>
@@ -13,7 +13,7 @@
 <body>
 
 <div class="nav-bar">
-    <h1>MadMapp</h1>
+    <h1 class="logo-text">MadMApp</h1>
     <div class="menu-icon" onclick="toggleDropdown()">&#9776;</div>
     <div class="dropdown-options" id="dropdownOptions">
         {% if user.is_authenticated %}
@@ -36,7 +36,7 @@
 </div>
 <script src="{% static 'index.js' %}"></script>
 <footer class="sticky-footer">
-    <div class="copyright">Copyright © 2024 MadMapp</div>
+    <div class="copyright">Copyright © 2024 MadMApp</div>
     <div class="social-icons">
         <!-- Add your social media icons here -->
         <!-- Example icons using Font Awesome -->
