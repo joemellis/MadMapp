@@ -2,14 +2,12 @@
 {% load static %}
 {% if user.is_authenticated %}
 {% block content %}
-<div class="user-profile">
-    <h2>User Profile</h2>
-    
+<div class="user-profile-container">
     <div class="profile-details">
         <div class="profile-header">
-            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Image">
+            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Image" class="profile-image">
             <div class="profile-info">
-                <h3>{{ user_profile.user.username }}</h3>
+                <h2>{{ user_profile.user.username }}</h2>
                 <p>Business Description: {{ user_profile.bio }}</p>
                 <p>Business Address: {{ user_profile.address }}</p>
                 <p>Business Phone: {{ user_profile.phone_number }}</p>
@@ -27,17 +25,17 @@
             <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{% static 'advert1.jpg' %}" class="d-block w-100" alt="Advert 1">
-                        <button class="upload-button">Upload</button>
+                        <img src="{% static 'advert1.jpeg' %}" class="d-block w-100" alt="Advert 1">
+                        <button class="button upload-button">Upload</button>
                         <i class="fas fa-trash-alt bin-icon"></i>
                     </div>
                     <!-- Add more carousel items for additional images -->
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                <button class="carousel-control-prev button" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                <button class="carousel-control-next button" type="button" data-bs-target="#carousel1" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -50,16 +48,16 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="{% static 'sharing_advert1.jpg' %}" class="d-block w-100" alt="Sharing Advert 1">
-                        <button class="upload-button">Upload</button>
+                        <button class="button upload-button">Upload</button>
                         <i class="fas fa-trash-alt bin-icon"></i>
                     </div>
                     <!-- Add more carousel items for additional images -->
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                <button class="carousel-control-prev button" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                <button class="carousel-control-next button" type="button" data-bs-target="#carousel2" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -69,20 +67,22 @@
     
 </div>
 <div class="start-adverts">
-    <button>start adverts</button>
-    <button id="getLocationButton">Get My Location</button>
+    <button class="button">start adverts</button>
+    <button class="button" id="getLocationButton">Get My Location</button>
 </div>
+
  <!-- Google Maps -->
  <div id="googleMapContainer">
     <iframe id="googleMap" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen ></iframe>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Function to update Google Maps iframe src with latitude and longitude
         function updateMap(latitude, longitude) {
             // Construct the Google Maps URL with latitude, longitude, and desired zoom level
             const zoomLevel = 1;  // Adjust the zoom level as needed
-            const googleMapSrc = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDUkEeZw1XQwyc8MUk63xeghTnfe1PiioU&q=${latitude},${longitude}&zoom=${zoomLevel}`;
+            const googleMapSrc = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${latitude},${longitude}&zoom=${zoomLevel}`;
     
             // Set the src attribute of the Google Maps iframe
             document.getElementById('googleMap').src = googleMapSrc;
@@ -90,7 +90,7 @@
     
         // Check if latitude and longitude are available in the context
         var latitude = '{{ UserProfile.latitude }}';
-        var longitude = '{{ UserProfilelongitude }}';
+        var longitude = '{{ UserProfile.longitude }}';
         
         // If latitude and longitude are not available, get the user's location
         if (!latitude || !longitude) {
@@ -124,7 +124,7 @@
         // Display an error message to the user
         alert('Error getting your location. Please try again later.');
     }
-    </script>
+</script>
 <script src="{% static 'index.js' %}"></script>
 {% endblock %}
 {% endif %}
