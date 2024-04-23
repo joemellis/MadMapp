@@ -4,8 +4,9 @@
 {% block content %}
 <div class="user-profile-container">
     <div class="profile-details">
+        <img src="{{ user_profile.profile_picture.url }}" alt="Profile Image" class="profile-image">
         <div class="profile-header">
-            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Image" class="profile-image">
+            
             <div class="profile-info">
                 <h2>{{ user_profile.user.username }}</h2>
                 <p>Business Description: {{ user_profile.bio }}</p>
@@ -20,50 +21,61 @@
     
     <div class="image-galleries">
         <div class="gallery">
-            <h3>My Adverts</h3>
+            <h3>'   My Adverts</h3>
             <p>These are the big adverts that display on your screen</p>
+            <button class="carousel-control-prev button" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next button" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <button class="upload-my-ad button">+upload</button>
             <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{% static 'advert1.jpeg' %}" class="d-block w-100" alt="Advert 1">
-                        <button class="button upload-button">Upload</button>
-                        <i class="fas fa-trash-alt bin-icon"></i>
+                        <div class="carousel-image-container">
+                            <img src="{% static 'advert1.jpeg' %}" class="d-block w-100" alt="Advert 1">
+                            <div class="overlay">
+                                <button class="button upload-button">Upload</button>
+                                <i class="fas fa-trash-alt bin-icon"></i>
+                            </div>
+                        </div>
                     </div>
                     <!-- Add more carousel items for additional images -->
                 </div>
-                <button class="carousel-control-prev button" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next button" type="button" data-bs-target="#carousel1" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+               
             </div>
         </div>
         <div class="gallery">
-            <h3>My Sharing Adverts</h3>
-            <p>These images are shared to your network</p>
-            <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+            <h3>'   My Sharing Adverts</h3>
+            <p>These are the smaller adverts that display on your connections screens</p>
+            <button class="carousel-control-prev button" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next button" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <button class="upload-my-sharing-ad button">+upload</button>
+            <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{% static 'sharing_advert1.jpg' %}" class="d-block w-100" alt="Sharing Advert 1">
-                        <button class="button upload-button">Upload</button>
-                        <i class="fas fa-trash-alt bin-icon"></i>
+                        <div class="carousel-image-container">
+                            <img src="{% static 'sharing_advert1.jpg' %}" class="d-block w-100" alt="Advert 1">
+                            <div class="overlay">
+                                <button class="button upload-button">Upload</button>
+                                <i class="fas fa-trash-alt bin-icon"></i>
+                            </div>
+                        </div>
                     </div>
                     <!-- Add more carousel items for additional images -->
                 </div>
-                <button class="carousel-control-prev button" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next button" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                
             </div>
         </div>
-    </div>
     
 </div>
 <div class="start-adverts">

@@ -22,11 +22,13 @@
                     <span class="token-count bronze">{{ user_profile.bronze_token }}</span> <!-- Display number of bronze tokens -->
                     <span class="token-count silver">{{ user_profile.silver_token }}</span> <!-- Display number of silver tokens -->
                     <span class="token-count gold">{{ user_profile.gold_token }}</span> <!-- Display number of gold tokens -->
+                    <button class="button">+</button>
                 </div>
                 <!-- Coin icon with number of coins -->
                 <div class="coin-info">
                     <i class="fas fa-coins coin-icon" style="color: {{ user_profile.coin_color }}"></i>
                     <span class="coin-count gold">{{ user_profile.coins }}</span> <!-- Display number of coins -->
+                    <button class="button">+</button>
                 </div>
                 <!-- Level icon with tier -->
                 <div class="level-info">
@@ -34,6 +36,7 @@
                     <span class="tier">{{ user_profile.teir }}</span> <!-- Display tier -->
                 </div>
             {% endif %}
+            
         </div>
         <div class="menu-icon" onclick="toggleDropdown()">&#9776;</div>
         <div class="dropdown-options" id="dropdownOptions">

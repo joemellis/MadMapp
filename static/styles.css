@@ -12,6 +12,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     color: #333;
+    width: 100%;
 }
 
 a {
@@ -83,14 +84,15 @@ p {
 
 /* Button styles */
 .button {
-    background-color: #f60ca4;
+    background-color: #191618;
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 5px 5px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    z-index: 9999;
 }
 
 .button:hover {
@@ -100,6 +102,61 @@ p {
 /* Form styles */
 form {
     margin-top: 20px;
+}
+
+.gallery {
+    max-width: 100%;
+    background-color: #41042c19;
+    border-radius: 20px;
+    max-height: 500px;
+    position: relative; /* Add position relative to enable positioning of child elements */
+    overflow: hidden; /* Add overflow hidden to hide any overflow content */
+    margin-bottom: 20px;
+}
+.image-galleries{
+    max-width: 100%;
+}
+.carousel-item {
+    position: relative;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Scale image while maintaining aspect ratio */
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 99999;
+}
+
+.carousel-item:hover .overlay {
+    opacity: 1;
+}
+
+.overlay button,
+.overlay i {
+    display: inline-block;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 10px 20px;
+    margin: 5px; /* Adjust margin for spacing */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.overlay i {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-left: 10px;
 }
 
 label {
@@ -119,6 +176,9 @@ input[type="password"] {
     margin-bottom: 10px;
 }
 
+#googleMapContainer{
+    width: 100%;
+}
 /* Footer styles */
 footer {
     background-color: #1e1e1e;
@@ -126,6 +186,7 @@ footer {
     padding: 20px;
     text-align: center;
     border-top: 2px solid #f60ca4;
+    width: 100%;
 }
 
 .social-icons i {
@@ -143,18 +204,27 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
+    margin-bottom: 20px;
+    min-width: 100%;
+   
 }
 
 .profile-details {
     display: flex;
     align-items: center;
+    background-color: #41042c19;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .profile-image {
-    width: 100px;
-    height: 100px;
+    min-width: 100px;
+    width: 15%;
+    height: 15%;
     border-radius: 50%; /* Make it a circle */
     margin-right: 20px;
+    background-color: #f9f9f9;
 }
 
 .profile-info {
@@ -210,3 +280,4 @@ footer {
     margin-left: 5px; /* Adjust spacing between icon and tier */
     color: #23f707; /* Use the user's level color for the tier */
 }
+
